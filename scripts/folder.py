@@ -15,7 +15,7 @@ def collect_paired_files(images_dir: Path, labels_dir: Path) -> List[Tuple[Path,
 
     for img in image_files:
         stem = img.stem  # 예: 'xxx' from xxx.jpg
-        label = labels_dir / f"{stem}.json"
+        label = labels_dir / f"{stem}.txt"
         if label.exists():
             pairs.append((img, label))
         else:
@@ -54,7 +54,7 @@ def copy_pairs(pairs: List[Tuple[Path, Path]], out_root: Path, split_name: str):
 
 if __name__ == "__main__":
     # ───── 경로 설정 ─────
-    source = Path(r"T:\03_Platform\03.Floorplans\Train\Room\data")
+    source = Path(r"T:\03_Platform\03.Floorplans\Train\Wall\data")
     images_dir = source / "images"
     labels_dir = source / "labels"
 
