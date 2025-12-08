@@ -19,14 +19,21 @@ def main():
         device=0
     )
 
-    metrics = results.metrics
+    # Overall metrics
+    print("Mean Precision (mP):", results.box.mp)
+    print("Mean Recall (mR):", results.box.mr)
+    print("mAP50:", results.box.map50)
+    print("mAP50-95:", results.box.map)
 
-    print("\n===== Evaluation Results =====")
-    print(f"Precision     : {metrics.precision:.4f}")
-    print(f"Recall        : {metrics.recall:.4f}")
-    print(f"mAP50         : {metrics.map50:.4f}")
-    print(f"mAP50-95      : {metrics.map:.4f}")
-    print("==============================\n")
+    # Per-class metrics
+    print("Precision per class:", results.box.p)
+    print("Recall per class:", results.box.r)
+    print("AP50 per class:", results.box.ap50)
+    print("AP50-95 per class:", results.box.ap)
+    print("mAP50_per_class:", results.box.maps)
+
+    print("=================================\n")
+
 
 if __name__ == "__main__":
     main()
