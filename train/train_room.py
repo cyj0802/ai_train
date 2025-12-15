@@ -25,7 +25,7 @@ SPLITS = ["train", "val", "test"]
 # PRETRAINED_WEIGHTS = Path(r"C:\Users\yujee\OneDrive\문서\GitHub\ai_train\models\room_junction_v11_best.pt")
 # 2) 처음부터 yolo11m-seg.pt로 시작하고 싶으면:
 # PRETRAINED_WEIGHTS = "yolo11m-seg.pt"
-PRETRAINED_WEIGHTS = Path(r"T:\03_Platform\02.AI\03_Room\01_Area\v0.0.1s\weights.pt")
+PRETRAINED_WEIGHTS = Path(r"T:\03_Platform\02.AI\03_Room\01_Area\v0.0.1\weights.pt")
 
 # ─────────────────────────────────────────
 # 1. 클래스 정의 (콜랩 코드 그대로)
@@ -224,24 +224,25 @@ def main():
     # 5) 학습
     results = model.train(
         data=str(DATA_YAML_PATH),
-        epochs=300,
-        imgsz=1280,
+        epochs=100,
+        imgsz=1280,          # 먼저 안전한 기준으로
         batch=2,
         device=device,
-        project="runs_room/segment_local",
+        project="runs_room_again/segment_local",
         name=run_name,
         save=True,
-        patience=100,
-        optimizer="SGD",
+        patience=0,          # early stopping off
+        optimizer="AdamW",   # 파인튜닝 안정적 (SGD 유지해도 되지만 AdamW가 무난)
         amp=(device != "cpu"),
 
-        lr0=0.003, lrf=0.1, momentum=0.9, weight_decay=0.0005,
+        lr0=0.0003, lrf=0.1, momentum=0.9, weight_decay=0.0005,
         box=7.5, cls=0.3, dfl=1.5,
+
         hsv_h=0.0, hsv_s=0.0, hsv_v=0.0,
         degrees=0.0, shear=0.0, perspective=0.0,
-        translate=0.02, scale=0.95,
+        translate=0.01, scale=0.3,
         flipud=0.0, fliplr=0.0,
-        mosaic=0.1, mixup=0.0,
+        mosaic=0.0, mixup=0.0,
 
         workers=0,
         save_period=10,
