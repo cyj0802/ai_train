@@ -6,7 +6,7 @@ def main():
     # -------------------------------------------------
     # 1) 경로 설정 (로컬용)
     # -------------------------------------------------
-    BASE = Path(r"T:\03_Platform\03.Floorplans\Train\Wall\data")
+    BASE = Path(r"T:\03_Platform\03.Floorplans\Train\Wall\corner\no_diag\data_again")
 
     SPLITS = ["train", "val", "test"]
     IMG_DIRS = {s: BASE / s / "images" for s in SPLITS}
