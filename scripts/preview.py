@@ -17,7 +17,7 @@ def collect_preview_images(base_dir: Path) -> None:
         if subdir.name == "images":
             continue
 
-        preview_img = subdir / "preview.png"
+        preview_img = subdir / "preview_furniture_rotation.png"
         if not preview_img.exists():
             continue
 
@@ -28,5 +28,5 @@ def collect_preview_images(base_dir: Path) -> None:
 
 
 if __name__ == "__main__":
-    BASE_DIR = Path(r"T:\05_AI\json_images\11100_Dong-Segok")
+    BASE_DIR = Path(r"T:\05_AI\furn\json_images\10300_Dong-Gaepo")
     collect_preview_images(BASE_DIR)
